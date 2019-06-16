@@ -44,10 +44,7 @@ export class BankListComponent implements OnInit {
   getBankLists(branch: any) {
     branch = branch.toUpperCase();
     this.page_loader = true;
-    let params = {
-      "city": branch
-    }
-    this.bankService.getBankLists(params).subscribe((response: any) => {
+    this.bankService.getBankLists(branch).subscribe((response: any) => {
       this.rows = response;
       this.data = this.rows;
       this.rows.forEach((row, index) => {
