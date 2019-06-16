@@ -7,8 +7,8 @@ export class BankService {
   private subject = new BehaviorSubject<any>({});
   constructor(private httpClient: HttpClient) { }
 
-  getBankLists() {
-    return this.httpClient.get('https://vast-shore-74260.herokuapp.com/banks?city=MUMBAI');
+  getBankLists(query_params: any) {
+    return this.httpClient.get('https://vast-shore-74260.herokuapp.com/banks', { params: query_params });
   }
 
   on(): Observable<any> {

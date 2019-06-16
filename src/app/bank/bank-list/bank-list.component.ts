@@ -38,12 +38,16 @@ export class BankListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getBankLists();
+    this.getBankLists(this.selectedBranch);
   }
 
-  getBankLists() {
+  getBankLists(branch: any) {
+    branch = branch.toUpperCase();
     this.page_loader = true;
-    this.bankService.getBankLists().subscribe((response: any) => {
+    let params = {
+      "city": branch
+    }
+    this.bankService.getBankLists(params).subscribe((response: any) => {
       this.rows = response;
       this.data = this.rows;
       this.rows.forEach((row, index) => {

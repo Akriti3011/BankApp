@@ -6,7 +6,8 @@
     <div *ngIf="!page_loader">
       <div class="row">
         <div class="col-sm-6 inline-block">
-          <ng-select [items]="branches" [(ngModel)]="selectedBranch" [hideSelected]="true" [closeOnSelect]="true" [clearable]="false">
+          <ng-select [items]="branches" [(ngModel)]="selectedBranch" (change)="getBankLists(selectedBranch)" [hideSelected]="true"
+            [closeOnSelect]="true" [clearable]="false">
           </ng-select>
         </div>
         <div class="col-sm-6 inline-block">
