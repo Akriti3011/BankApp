@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { BankService } from '../bank.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-bank-list',
   templateUrl: './bank-list.component.html',
   styleUrls: ['./bank-list.component.css'],
-  providers: [BankService],
   encapsulation: ViewEncapsulation.None,
 })
 export class BankListComponent implements OnInit {
@@ -18,7 +18,8 @@ export class BankListComponent implements OnInit {
   copy_rows: any;
   data: any;
   constructor(
-    private bankService: BankService
+    private bankService: BankService,
+    private router: Router
   ) {
     this.columns = [
       { name: 'IFSC', prop: 'ifsc', width: 120 },
@@ -71,6 +72,14 @@ export class BankListComponent implements OnInit {
     }
     else {
       this.data = this.rows;
+    }
+  }
+
+  onActivate(event) {
+    if (event.type == 'click') {
+      let id = event.row.id;
+      this.bankService.broadcast(event.row);
+      this.router.navigate(['bank/detail', id]);
     }
   }
 
