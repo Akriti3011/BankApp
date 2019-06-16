@@ -1,0 +1,25 @@
+<div class="content-wrapper">
+  <div class="body-content">
+    <div *ngIf="page_loader">
+      <ngx-ui-loader bgsPosition="center-center"></ngx-ui-loader>
+    </div>
+    <div *ngIf="!page_loader">
+      <div class="row">
+        <div class="col-sm-6 inline-block">
+          <ng-select [items]="branches" [(ngModel)]="selectedBranch" [hideSelected]="true" [closeOnSelect]="true" [clearable]="false">
+          </ng-select>
+        </div>
+        <div class="col-sm-6 inline-block">
+          <input type="search" class="searchBox" placeholder="Search" (keyup)="getData($event)" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <ngx-datatable [rows]="data" [columns]="columns" [columnMode]="'force'" [footerHeight]="50" [headerHeight]="50" [rowHeight]="42"
+            [scrollbarH]="true" [limit]="10">
+          </ngx-datatable>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
